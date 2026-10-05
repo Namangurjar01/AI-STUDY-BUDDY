@@ -2,12 +2,13 @@
 // Firebase web config identifies your project; it is not an admin/private key.
 // Never paste a service-account JSON file or private service-account key here.
 export const firebaseConfig = {
-  apiKey: 'PASTE_API_KEY_HERE',
-  authDomain: 'PASTE_PROJECT_ID_HERE.firebaseapp.com',
-  projectId: 'PASTE_PROJECT_ID_HERE',
-  storageBucket: 'PASTE_STORAGE_BUCKET_HERE',
-  messagingSenderId: 'PASTE_MESSAGING_SENDER_ID_HERE',
-  appId: 'PASTE_APP_ID_HERE',
+  apiKey: "AIzaSyCsyV4dCXLONhF9qUs0lu0nypt7cSpOUEo",
+  authDomain: "ai-study-buddy-39096.firebaseapp.com",
+  projectId: "ai-study-buddy-39096",
+  storageBucket: "ai-study-buddy-39096.firebasestorage.app",
+  messagingSenderId: "454898202611",
+  appId: "1:454898202611:web:f7773ec2e99e51fd334486",
+  measurementId: "G-QZTZC6Z5PP",
 };
 
 export function isFirebaseConfigured() {

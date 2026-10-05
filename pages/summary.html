@@ -7,6 +7,7 @@
   <title>AI Summary | AI Study Buddy</title>
   <link rel="stylesheet" href="../style.css">
   <script type="module" src="../js/summary.js"></script>
+  <script type="module" src="../js/dashboard-auth.js"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -30,10 +31,16 @@
       <div class="summary-content">
         <div class="summary-breadcrumb"><a href="dashboard.html">Dashboard</a><span aria-hidden="true">/</span><a href="upload.html">My notes</a><span aria-hidden="true">/</span><span>AI Summary</span></div>
         <section class="summary-heading-row">
-          <div class="summary-heading-copy"><p class="eyebrow accent-text">YOUR STUDY GUIDE</p><h1 id="summary-title">Cell Biology: Cell Structure</h1><div class="summary-source"><span class="summary-pdf-icon">PDF</span><span id="summary-source-name">Cell Biology — Cell Structure.pdf</span><span class="summary-source-divider" aria-hidden="true">·</span><span>8 pages</span></div></div>
+          <div class="summary-heading-copy"><p class="eyebrow accent-text">YOUR STUDY GUIDE</p><h1 id="summary-title">Your study guide</h1><div class="summary-source"><span class="summary-pdf-icon">PDF</span><span id="summary-source-name">No material selected</span><span class="summary-source-divider" aria-hidden="true">·</span><span id="summary-page-count"></span></div></div>
           <button class="summary-download-button" id="download-summary" type="button" disabled><span aria-hidden="true">↓</span> Download Summary</button>
         </section>
-        <div class="summary-demo-banner"><span aria-hidden="true">✳</span><span><strong>AI-generated study guide</strong><small>Demo content · This summary is an example, not generated from an uploaded file.</small></span></div>
+        <div class="summary-demo-banner" id="summary-source-notice"><span aria-hidden="true">✳</span><span><strong>AI-generated study guide</strong><small>Generated from the text extracted from your PDF.</small></span></div>
+
+        <section class="summary-loading" id="summary-empty" hidden>
+          <h2>Start with a study document</h2>
+          <p>Upload and analyze a PDF to build a study guide from your material.</p>
+          <a class="summary-action-link" href="upload.html">Upload a PDF <span aria-hidden="true">→</span></a>
+        </section>
 
         <section class="summary-loading" id="summary-loading" aria-live="polite">
           <span class="loading-orbit" aria-hidden="true"><i></i><i></i><i></i></span>

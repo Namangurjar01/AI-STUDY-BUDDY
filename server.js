@@ -66,8 +66,7 @@ async function requireSignedInUser(request, response, next) {
   if (!token) return sendError(response, 401, 'Sign in before using the study tools.');
 
   if (!firebaseAdminReady) {
-    request.user = { uid: 'local-unverified-user' };
-    return next();
+    return sendError(response, 503, 'Secure AI requests are unavailable until Firebase Admin is configured on the server.');
   }
 
   try {

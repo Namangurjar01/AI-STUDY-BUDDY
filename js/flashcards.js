@@ -194,6 +194,10 @@ cardButton.addEventListener('click', () => {
     try {
       const reviewed = Number(localStorage.getItem('studyBuddyFlashcardsReviewed') || 0);
       localStorage.setItem('studyBuddyFlashcardsReviewed', String(reviewed + 1));
+      const activity = JSON.parse(localStorage.getItem('studyBuddyFlashcardActivity') || '[]');
+      const recentActivity = Array.isArray(activity) ? activity : [];
+      recentActivity.push(new Date().toISOString());
+      localStorage.setItem('studyBuddyFlashcardActivity', JSON.stringify(recentActivity.slice(-500)));
       syncCloudProgress();
     } catch {
       // The card can still flip if browser storage is unavailable.

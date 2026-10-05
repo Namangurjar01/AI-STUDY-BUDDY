@@ -1,4 +1,6 @@
 import { getSignedInUser, getStudyMaterials, getQuizResults } from './firestore-data.js';
+import { requestStudyBuddyAI } from './ai-api.js';
+import { getStudyContext } from './study-context.js';
 
 function readLocalList(key) {
   try {
@@ -8,12 +10,6 @@ function readLocalList(key) {
     return [];
   }
 }
-
-const sampleMaterials = [
-  { name: 'Cell Biology — Cell Structure.pdf', subject: 'Biology', date: 'Today · 10:42 AM', icon: 'PDF', status: 'Summary ready', href: 'quiz.html' },
-  { name: 'Foundations of Chemistry.pdf', subject: 'Chemistry', date: 'Yesterday · 4:18 PM', icon: 'PDF', status: 'In progress', href: 'upload.html' },
-  { name: 'Calculus — Derivatives & Limits', subject: 'Mathematics · Notes', date: 'May 17 · 1:05 PM', icon: 'NOTE', status: 'Ready to review', href: 'flashcards.html' },
-];
 
 function createMaterialRow(material) {
   const row = document.createElement('a');
@@ -56,9 +52,17 @@ const personalMaterials = savedNotes.slice(-2).reverse().map((note) => ({
   href: 'upload.html',
 }));
 const materialList = document.querySelector('#material-list');
-[...personalMaterials, ...sampleMaterials].forEach((material) => {
+personalMaterials.forEach((material) => {
   materialList.append(createMaterialRow(material));
 });
+if (!personalMaterials.length) {
+  const empty = document.createElement('p');
+  empty.className = 'search-empty';
+  empty.textContent = 'No study materials yet. Upload a PDF to get started.';
+  materialList.append(empty);
+}
+document.querySelector('#dashboard-material-count').textContent = String(savedNotes.length);
+document.querySelector('#dashboard-cards-reviewed').textContent = String(Number(localStorage.getItem('studyBuddyFlashcardsReviewed')) || 0);
 
 function displayUploadDate(timestamp) {
   const date = timestamp?.toDate ? timestamp.toDate() : null;
@@ -71,11 +75,12 @@ async function loadCloudDashboardData() {
 
   try {
     const [materials, quizResults] = await Promise.all([
-      getStudyMaterials(user, 8),
-      getQuizResults(user, 1),
+      getStudyMaterials(user, 1000),
+      getQuizResults(user, 1000),
     ]);
 
     if (materials.length) {
+      document.querySelector('#dashboard-material-count').textContent = String(materials.length);
       materialList.replaceChildren();
       materials.forEach((material) => {
         materialList.append(createMaterialRow({
@@ -89,15 +94,16 @@ async function loadCloudDashboardData() {
       });
     }
 
+    if (quizResults.length) document.querySelector('#dashboard-quiz-count').textContent = String(quizResults.length);
     if (quizResults.length) {
       const latestResult = quizResults[0];
       const latestScore = Number(latestResult.percentage) || 0;
       document.querySelector('#dashboard-quiz-score').textContent = `${latestScore}%`;
       document.querySelector('#quiz-score-bar').style.width = `${latestScore}%`;
-      document.querySelector('#quiz-score-caption').textContent = 'Latest Firestore quiz result';
+      document.querySelector('#quiz-score-caption').textContent = 'Latest quiz result';
     }
   } catch {
-    // The sample dashboard remains usable when Firestore is unavailable.
+    // Browser-saved materials and quiz scores remain available offline.
   }
 }
 
@@ -110,12 +116,16 @@ const today = new Intl.DateTimeFormat(undefined, {
 }).format(new Date());
 document.querySelector('#dashboard-date').textContent = today.toUpperCase();
 
+const localHistory = readLocalList('studyBuddyQuizHistory');
+document.querySelector('#dashboard-quiz-count').textContent = String(localHistory.length);
 const latestQuiz = Number(localStorage.getItem('studyBuddyLatestQuiz'));
 if (Number.isFinite(latestQuiz) && latestQuiz >= 0 && latestQuiz <= 100) {
   document.querySelector('#dashboard-quiz-score').textContent = `${latestQuiz}%`;
   document.querySelector('#quiz-score-bar').style.width = `${latestQuiz}%`;
-  document.querySelector('#quiz-score-caption').textContent = 'Your latest sample quiz';
+  document.querySelector('#quiz-score-caption').textContent = 'Latest quiz saved on this device';
 }
+const localReviewed = Number(localStorage.getItem('studyBuddyFlashcardsReviewed')) || 0;
+document.querySelector('#dashboard-cards-reviewed').textContent = String(localReviewed);
 
 const searchInput = document.querySelector('#dashboard-search');
 const searchableItems = document.querySelectorAll('[data-searchable]');
@@ -157,7 +167,7 @@ document.querySelectorAll('[data-question]').forEach((suggestion) => {
   });
 });
 
-assistantForm.addEventListener('submit', (event) => {
+assistantForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const question = assistantQuestion.value.trim();
   if (!question) {
@@ -166,7 +176,22 @@ assistantForm.addEventListener('submit', (event) => {
     return;
   }
 
-  assistantResponse.textContent = `Demo mode: “${question}” was not sent anywhere. AI answers are not connected yet.`;
+  const submitButton = assistantForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  assistantQuestion.disabled = true;
+  assistantResponse.textContent = 'Thinking through your question…';
+  try {
+    const result = await requestStudyBuddyAI('ask', {
+      data: { question, studyText: getStudyContext() },
+    });
+    assistantResponse.textContent = result.answer || 'The AI returned an empty answer. Please try again.';
+  } catch (error) {
+    assistantResponse.textContent = error.message || 'Could not get an answer. Please try again.';
+  } finally {
+    submitButton.disabled = false;
+    assistantQuestion.disabled = false;
+    assistantQuestion.focus();
+  }
 });
 
 const settingsDialog = document.querySelector('#settings-dialog');

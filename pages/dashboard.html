@@ -38,30 +38,30 @@
 
       <div class="dashboard-content">
         <section class="dashboard-intro-row">
-          <div><span class="demo-badge"><i></i> DEMO STUDY SPACE</span><p class="dashboard-intro-copy">Your next focused session is just around the corner.</p></div>
+          <div><span class="demo-badge"><i></i> YOUR STUDY SPACE</span><p class="dashboard-intro-copy">Your notes, practice, and recent activity in one place.</p></div>
           <a class="dashboard-upload-button" href="upload.html"><span aria-hidden="true">＋</span> Upload Notes/PDF</a>
         </section>
 
         <section class="dashboard-stats" id="progress" aria-label="Study progress cards">
           <article class="dashboard-stat-card progress-stat">
-            <div class="stat-card-top"><span class="stat-symbol progress-symbol">↗</span><span class="stat-period">THIS WEEK</span></div>
-            <p>Study Progress</p><div class="stat-value-line"><strong>72%</strong><span class="stat-trend">+12% <span aria-hidden="true">↗</span></span></div>
-            <div class="stat-progress-track"><span style="width:72%"></span></div><small>4 of 5 weekly study goals</small>
+            <div class="stat-card-top"><span class="stat-symbol progress-symbol">↗</span><span class="stat-period">LIBRARY</span></div>
+            <p>Study Materials</p><div class="stat-value-line"><strong id="dashboard-material-count">0</strong></div>
+            <small>Your saved study documents</small>
           </article>
           <article class="dashboard-stat-card quiz-stat">
             <div class="stat-card-top"><span class="stat-symbol quiz-symbol">✓</span><span class="stat-period">LAST QUIZ</span></div>
-            <p>Quiz Score</p><div class="stat-value-line"><strong id="dashboard-quiz-score">86%</strong><span class="stat-trend">+8% <span aria-hidden="true">↗</span></span></div>
-            <div class="stat-progress-track"><span id="quiz-score-bar" style="width:86%"></span></div><small id="quiz-score-caption">Biology · Cell structure</small>
+            <p>Latest Quiz Score</p><div class="stat-value-line"><strong id="dashboard-quiz-score">—</strong></div>
+            <div class="stat-progress-track"><span id="quiz-score-bar" style="width:0%"></span></div><small id="quiz-score-caption">Complete a quiz to see your score</small>
           </article>
           <article class="dashboard-stat-card topics-stat">
-            <div class="stat-card-top"><span class="stat-symbol topics-symbol">▤</span><span class="stat-period">THIS MONTH</span></div>
-            <p>Topics Completed</p><div class="stat-value-line"><strong>12<span class="stat-denominator"> / 18</span></strong><span class="stat-trend neutral-trend">On track</span></div>
-            <div class="stat-progress-track"><span style="width:67%"></span></div><small>6 more topics to your monthly goal</small>
+            <div class="stat-card-top"><span class="stat-symbol topics-symbol">✓</span><span class="stat-period">ALL TIME</span></div>
+            <p>Quizzes Completed</p><div class="stat-value-line"><strong id="dashboard-quiz-count">0</strong></div>
+            <small>Your practice history</small>
           </article>
           <article class="dashboard-stat-card streak-stat">
-            <div class="stat-card-top"><span class="stat-symbol streak-symbol">✳</span><span class="stat-period">PERSONAL BEST · 12</span></div>
-            <p>Study Streak</p><div class="stat-value-line"><strong>7 <span class="streak-unit">days</span></strong><span class="streak-flame">✦</span></div>
-            <div class="streak-days" aria-label="Studied six days this week"><i class="done">M</i><i class="done">T</i><i class="done">W</i><i class="done">T</i><i class="done">F</i><i class="done">S</i><i class="today">S</i></div><small>You're building a great habit</small>
+            <div class="stat-card-top"><span class="stat-symbol streak-symbol">✳</span><span class="stat-period">ALL TIME</span></div>
+            <p>Flashcards Reviewed</p><div class="stat-value-line"><strong id="dashboard-cards-reviewed">0</strong></div>
+            <small>Cards flipped for recall</small>
           </article>
         </section>
 
@@ -91,13 +91,13 @@
               <p class="assistant-description">Get a concept explained, make a quick study plan, or figure out what to review next.</p>
               <div class="suggestion-chips" aria-label="Suggested questions"><button type="button" data-question="Explain cell structure in simple terms">Explain cell structure</button><button type="button" data-question="Help me make a quick study plan">Make a study plan</button></div>
               <form class="assistant-form" id="assistant-form"><label class="visually-hidden" for="assistant-question">Ask the study assistant a question</label><input id="assistant-question" type="text" maxlength="180" placeholder="Ask a study question..." autocomplete="off"><button type="submit" aria-label="Send question" title="Send question">↑</button></form>
-              <p class="assistant-response" id="assistant-response" role="status" aria-live="polite">Demo assistant · Responses are not AI-generated yet.</p>
+              <p class="assistant-response" id="assistant-response" role="status" aria-live="polite">Ask a question and get help from your AI study assistant.</p>
             </section>
 
             <section class="focus-card" aria-label="Study tip"><div class="focus-card-header"><span class="focus-icon" aria-hidden="true">✦</span><span>STUDY TIP</span></div><h2>Small sessions add up.</h2><p>Try 25 minutes of focus, then take a short break before your next topic.</p><a href="quiz.html">Start a focus session <span aria-hidden="true">→</span></a></section>
           </aside>
         </div>
-        <p class="dashboard-disclaimer">Sample dashboard activity is for demonstration. Your notes and progress are stored in this browser only.</p>
+        <p class="dashboard-disclaimer">Your study history stays on this device and syncs to your account when Firebase is configured.</p>
       </div>
     </main>
   </div>
