@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f4">
+  <title>Quick Quiz | AI Study Buddy</title>
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="../js/quiz.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="../index.html" aria-label="AI Study Buddy home"><span class="brand-mark">s.</span><span>study buddy</span></a>
+      <p class="sidebar-label">YOUR SPACE</p>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-link" href="../index.html"><span class="nav-icon">⌂</span> Home</a>
+        <a class="nav-link" href="dashboard.html"><span class="nav-icon">▦</span> Dashboard</a>
+        <a class="nav-link" href="upload.html"><span class="nav-icon">＋</span> My notes</a>
+        <a class="nav-link active" href="quiz.html" aria-current="page"><span class="nav-icon">☷</span> Quiz</a>
+        <a class="nav-link" href="flashcards.html"><span class="nav-icon">▤</span> Flashcards</a>
+      </nav>
+      <div class="sidebar-note"><span class="note-spark">✳</span><strong>Small steps count.</strong><p>A little focused study today goes a long way.</p></div>
+      <div class="sidebar-bottom"><span class="avatar">S</span><span><strong>Study space</strong><small>Your personal desk</small></span></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><span class="eyebrow">YOUR STUDY SPACE</span><a class="topbar-link" href="dashboard.html">View progress <span aria-hidden="true">↗</span></a></header>
+      <section class="page-header quiz-page-header"><p class="eyebrow accent-text">PRACTICE MAKES IT STICK</p><h1>Cell Biology Check-In</h1><p>Review cell structures, functions, and the ways they work together. Choose a level and see what you know.</p></section>
+      <section class="content-section quiz-page-content">
+        <div class="quiz-settings-row">
+          <div class="quiz-topic-label"><span class="quiz-topic-icon" aria-hidden="true">✳</span><span><strong>Cell Biology</strong><small>Foundations · Sample quiz</small></span></div>
+          <div class="quiz-settings-controls">
+            <label class="quiz-setting"><span>Difficulty</span><select id="difficulty-select"><option value="all">All levels</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option></select></label>
+            <div class="quiz-question-count"><span>Questions</span><strong id="question-count">10</strong></div>
+            <button class="quiz-ai-generate-button" id="generate-ai-quiz" type="button">Generate from my notes <span aria-hidden="true">✳</span></button>
+          </div>
+        </div>
+        <p class="quiz-ai-status" id="quiz-ai-status" role="status" aria-live="polite"></p>
+
+        <section class="quiz-workspace" id="quiz-workspace" aria-label="Cell biology quiz">
+          <div class="quiz-progress-header"><span class="quiz-progress-label" id="quiz-progress-label">QUESTION 1 OF 10</span><span class="quiz-progress-value" id="quiz-progress-value">0% complete</span></div>
+          <div class="quiz-progress-track-full" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><span id="quiz-progress-bar"></span></div>
+          <div class="quiz-question-meta"><span id="question-topic">CELL STRUCTURE</span><span class="difficulty-badge" id="question-difficulty">EASY</span></div>
+          <div id="quiz-content" aria-live="polite"></div>
+        </section>
+
+        <section class="quiz-result" id="quiz-result" aria-live="polite" hidden></section>
+        <p class="quiz-demo-note">Sample biology questions for practice. Your answers are checked in this browser and are not sent anywhere.</p>
+      </section>
+      <footer class="page-footer"><span>Made for curious minds.</span><span>Keep showing up, one page at a time.</span></footer>
+    </main>
+  </div>
+</body>
+</html>

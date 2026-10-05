@@ -1,0 +1,22 @@
+{
+  "name": "ai-study-buddy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI Study Buddy static frontend with a small secure AI API server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.0.2",
+    "multer": "^2.0.2",
+    "openai": "^4.77.0",
+    "pdfjs-dist": "^4.10.38"
+  }
+}

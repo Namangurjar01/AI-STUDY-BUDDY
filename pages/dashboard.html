@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f4">
+  <title>Dashboard | AI Study Buddy</title>
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="../js/dashboard.js"></script>
+  <script type="module" src="../js/dashboard-auth.js"></script>
+</head>
+<body class="student-dashboard auth-check">
+  <div class="dashboard-shell">
+    <aside class="dashboard-sidebar">
+      <a class="brand" href="../index.html" aria-label="AI Study Buddy home"><span class="brand-mark">s.</span><span>study buddy</span></a>
+      <p class="dashboard-nav-label">YOUR LEARNING SPACE</p>
+      <nav class="dashboard-nav" aria-label="Dashboard navigation">
+        <a class="dashboard-nav-link selected" href="dashboard.html" aria-current="page"><span class="dashboard-nav-icon">▦</span><span>Dashboard</span></a>
+        <a class="dashboard-nav-link" href="upload.html"><span class="dashboard-nav-icon">＋</span><span>My Notes</span></a>
+        <a class="dashboard-nav-link" href="ask-ai.html"><span class="dashboard-nav-icon">✳</span><span>Ask AI</span></a>
+        <a class="dashboard-nav-link" href="quiz.html"><span class="dashboard-nav-icon">☷</span><span>Quiz</span></a>
+        <a class="dashboard-nav-link" href="flashcards.html"><span class="dashboard-nav-icon">▤</span><span>Flashcards</span></a>
+        <a class="dashboard-nav-link" href="progress.html"><span class="dashboard-nav-icon">↗</span><span>Progress</span></a>
+        <button class="dashboard-nav-link settings-trigger" id="open-settings" type="button"><span class="dashboard-nav-icon">⚙</span><span>Settings</span></button>
+      </nav>
+      <div class="sidebar-study-tip"><span class="tip-spark" aria-hidden="true">✳</span><strong>Keep your streak going</strong><p>One focused session is all it takes to keep moving.</p><a href="quiz.html">Start a quick quiz <span aria-hidden="true">→</span></a></div>
+      <div class="dashboard-sidebar-profile"><span class="profile-avatar">S</span><span><strong id="sidebar-user-name">Student</strong><small id="sidebar-user-detail">Personal study space</small></span><span class="profile-dots" aria-hidden="true">···</span></div>
+    </aside>
+
+    <main class="dashboard-main" id="overview">
+      <header class="dashboard-topbar">
+        <div class="greeting-block"><p id="dashboard-date" class="dashboard-date">YOUR STUDY SPACE</p><h1>Welcome back, <span id="welcome-name">Student</span>!</h1><p class="greeting-subtitle">Here’s a little snapshot of your learning progress.</p></div>
+        <div class="topbar-actions">
+          <label class="dashboard-search"><span aria-hidden="true">⌕</span><input id="dashboard-search" type="search" placeholder="Search your study space" aria-label="Search study materials and recommendations"><kbd>⌘ K</kbd></label>
+          <div class="topbar-profile"><span class="profile-avatar">S</span><span><strong id="profile-user-name">Student</strong><small id="profile-user-detail">Free plan</small></span><button class="dashboard-logout" id="logout-button" type="button" aria-label="Log out" title="Log out">↪</button></div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <section class="dashboard-intro-row">
+          <div><span class="demo-badge"><i></i> DEMO STUDY SPACE</span><p class="dashboard-intro-copy">Your next focused session is just around the corner.</p></div>
+          <a class="dashboard-upload-button" href="upload.html"><span aria-hidden="true">＋</span> Upload Notes/PDF</a>
+        </section>
+
+        <section class="dashboard-stats" id="progress" aria-label="Study progress cards">
+          <article class="dashboard-stat-card progress-stat">
+            <div class="stat-card-top"><span class="stat-symbol progress-symbol">↗</span><span class="stat-period">THIS WEEK</span></div>
+            <p>Study Progress</p><div class="stat-value-line"><strong>72%</strong><span class="stat-trend">+12% <span aria-hidden="true">↗</span></span></div>
+            <div class="stat-progress-track"><span style="width:72%"></span></div><small>4 of 5 weekly study goals</small>
+          </article>
+          <article class="dashboard-stat-card quiz-stat">
+            <div class="stat-card-top"><span class="stat-symbol quiz-symbol">✓</span><span class="stat-period">LAST QUIZ</span></div>
+            <p>Quiz Score</p><div class="stat-value-line"><strong id="dashboard-quiz-score">86%</strong><span class="stat-trend">+8% <span aria-hidden="true">↗</span></span></div>
+            <div class="stat-progress-track"><span id="quiz-score-bar" style="width:86%"></span></div><small id="quiz-score-caption">Biology · Cell structure</small>
+          </article>
+          <article class="dashboard-stat-card topics-stat">
+            <div class="stat-card-top"><span class="stat-symbol topics-symbol">▤</span><span class="stat-period">THIS MONTH</span></div>
+            <p>Topics Completed</p><div class="stat-value-line"><strong>12<span class="stat-denominator"> / 18</span></strong><span class="stat-trend neutral-trend">On track</span></div>
+            <div class="stat-progress-track"><span style="width:67%"></span></div><small>6 more topics to your monthly goal</small>
+          </article>
+          <article class="dashboard-stat-card streak-stat">
+            <div class="stat-card-top"><span class="stat-symbol streak-symbol">✳</span><span class="stat-period">PERSONAL BEST · 12</span></div>
+            <p>Study Streak</p><div class="stat-value-line"><strong>7 <span class="streak-unit">days</span></strong><span class="streak-flame">✦</span></div>
+            <div class="streak-days" aria-label="Studied six days this week"><i class="done">M</i><i class="done">T</i><i class="done">W</i><i class="done">T</i><i class="done">F</i><i class="done">S</i><i class="today">S</i></div><small>You're building a great habit</small>
+          </article>
+        </section>
+
+        <div class="dashboard-columns">
+          <div class="dashboard-primary-column">
+            <section class="dashboard-panel materials-panel" aria-labelledby="materials-heading">
+              <div class="dashboard-panel-heading"><div><p class="dashboard-section-kicker">PICK UP WHERE YOU LEFT OFF</p><h2 id="materials-heading">Recent Study Materials</h2></div><a class="dashboard-text-link" href="upload.html">View all <span aria-hidden="true">→</span></a></div>
+              <div class="material-list" id="material-list" aria-live="polite"></div>
+              <p class="search-empty" id="material-search-empty" hidden>No matching study materials. Try another search.</p>
+            </section>
+
+            <section class="dashboard-panel recommendations-panel" aria-labelledby="recommendations-heading">
+              <div class="dashboard-panel-heading"><div><p class="dashboard-section-kicker">A GOOD NEXT STEP</p><h2 id="recommendations-heading">Recommended for You</h2></div><span class="recommend-spark" aria-hidden="true">✳</span></div>
+              <div class="recommendation-list" id="recommendation-list">
+                <a class="recommendation-item" data-searchable data-search="photosynthesis light energy biology flashcards" href="flashcards.html"><span class="recommendation-mark recommend-green">✳</span><span class="recommendation-copy"><strong>Review photosynthesis</strong><small>5 flashcards · Biology</small></span><span class="recommendation-arrow" aria-hidden="true">↗</span></a>
+                <a class="recommendation-item" data-searchable data-search="cell structure quiz biology practice" href="quiz.html"><span class="recommendation-mark recommend-peach">✓</span><span class="recommendation-copy"><strong>Try a 5-minute quiz</strong><small>Based on your recent study</small></span><span class="recommendation-arrow" aria-hidden="true">↗</span></a>
+                <a class="recommendation-item" data-searchable data-search="periodic table chemistry review notes" href="upload.html"><span class="recommendation-mark recommend-blue">↗</span><span class="recommendation-copy"><strong>Revisit your chemistry notes</strong><small>Last opened 2 days ago</small></span><span class="recommendation-arrow" aria-hidden="true">↗</span></a>
+              </div>
+              <p class="search-empty" id="recommendation-search-empty" hidden>No matching recommendations.</p>
+            </section>
+          </div>
+
+          <aside class="dashboard-secondary-column">
+            <section class="assistant-card" id="assistant" aria-labelledby="assistant-heading">
+              <div class="assistant-card-top"><span class="assistant-orb" aria-hidden="true">✳</span><span class="assistant-status"><i></i> READY TO HELP</span></div>
+              <p class="assistant-kicker">AI STUDY ASSISTANT</p><h2 id="assistant-heading">Ask me anything about your study material.</h2>
+              <p class="assistant-description">Get a concept explained, make a quick study plan, or figure out what to review next.</p>
+              <div class="suggestion-chips" aria-label="Suggested questions"><button type="button" data-question="Explain cell structure in simple terms">Explain cell structure</button><button type="button" data-question="Help me make a quick study plan">Make a study plan</button></div>
+              <form class="assistant-form" id="assistant-form"><label class="visually-hidden" for="assistant-question">Ask the study assistant a question</label><input id="assistant-question" type="text" maxlength="180" placeholder="Ask a study question..." autocomplete="off"><button type="submit" aria-label="Send question" title="Send question">↑</button></form>
+              <p class="assistant-response" id="assistant-response" role="status" aria-live="polite">Demo assistant · Responses are not AI-generated yet.</p>
+            </section>
+
+            <section class="focus-card" aria-label="Study tip"><div class="focus-card-header"><span class="focus-icon" aria-hidden="true">✦</span><span>STUDY TIP</span></div><h2>Small sessions add up.</h2><p>Try 25 minutes of focus, then take a short break before your next topic.</p><a href="quiz.html">Start a focus session <span aria-hidden="true">→</span></a></section>
+          </aside>
+        </div>
+        <p class="dashboard-disclaimer">Sample dashboard activity is for demonstration. Your notes and progress are stored in this browser only.</p>
+      </div>
+    </main>
+  </div>
+
+  <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-title">
+    <form method="dialog" class="settings-dialog-form">
+      <div class="settings-heading"><div><p class="dashboard-section-kicker">YOUR PREFERENCES</p><h2 id="settings-title">Dashboard settings</h2></div><button class="settings-close" value="close" aria-label="Close settings">×</button></div>
+      <label class="compact-setting" for="compact-mode"><span><strong>Compact dashboard</strong><small>Reduce spacing between dashboard sections.</small></span><input id="compact-mode" type="checkbox"></label>
+      <p class="settings-note">Preferences are saved in this browser.</p>
+      <button class="dashboard-upload-button settings-done" value="close">Done</button>
+    </form>
+  </dialog>
+</body>
+</html>

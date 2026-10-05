@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f4">
+  <title>Ask AI | AI Study Buddy</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../js/ask-ai.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="../index.html" aria-label="AI Study Buddy home"><span class="brand-mark">s.</span><span>study buddy</span></a>
+      <p class="sidebar-label">YOUR SPACE</p>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-link" href="dashboard.html"><span class="nav-icon">▦</span> Dashboard</a>
+        <a class="nav-link" href="upload.html"><span class="nav-icon">＋</span> My notes</a>
+        <a class="nav-link active" href="ask-ai.html" aria-current="page"><span class="nav-icon">✳</span> Ask AI</a>
+        <a class="nav-link" href="quiz.html"><span class="nav-icon">☷</span> Quiz</a>
+        <a class="nav-link" href="flashcards.html"><span class="nav-icon">▤</span> Flashcards</a>
+      </nav>
+      <div class="sidebar-note"><span class="note-spark">✳</span><strong>Questions help ideas stick.</strong><p>Ask, explore, and connect what you’re learning.</p></div>
+      <div class="sidebar-bottom"><span class="avatar">S</span><span><strong>Study space</strong><small>Your personal desk</small></span></div>
+    </aside>
+
+    <main class="main-content ask-ai-main">
+      <header class="topbar ask-ai-topbar"><div><span class="eyebrow">YOUR STUDY SPACE</span><h1>Ask AI</h1></div><a class="topbar-link" href="dashboard.html">Back to dashboard <span aria-hidden="true">↗</span></a></header>
+      <div class="ask-ai-content">
+        <div class="chat-workspace">
+          <section class="chat-panel" aria-label="Study assistant conversation">
+            <div class="chat-context-bar"><span class="assistant-mark" aria-hidden="true">✳</span><span class="chat-context-title"><strong>Study Buddy</strong><small><i></i> AI tutor</small></span><span class="context-divider"></span><span class="active-material"><span aria-hidden="true">PDF</span><span><small>STUDYING</small><strong id="active-material-name">Cell Biology: Cell Structure</strong></span></span><button class="clear-chat-button" id="clear-chat" type="button" aria-label="Clear conversation" title="Clear conversation">↻</button></div>
+
+            <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-relevant="additions text">
+              <div class="chat-day-label"><span>YOUR STUDY SESSION</span></div>
+              <article class="chat-message assistant-message">
+                <span class="message-avatar assistant-avatar" aria-hidden="true">✳</span>
+                <div class="message-content"><div class="message-author">Study Buddy <span>· AI tutor</span></div><div class="message-bubble"><p>Hi! I’m here to help you make sense of your study material. Ask me about a concept, request an example, or use one of the prompts below to get started.</p></div><time>Just now</time></div>
+              </article>
+              <div class="suggested-questions" id="suggested-questions">
+                <p>TRY A QUESTION</p>
+                <div class="suggestion-grid">
+                  <button type="button" data-prompt="Explain this topic in simple words">Explain this topic in simple words <span aria-hidden="true">↗</span></button>
+                  <button type="button" data-prompt="Give me an example">Give me an example <span aria-hidden="true">↗</span></button>
+                  <button type="button" data-prompt="What are the important points?">What are the important points? <span aria-hidden="true">↗</span></button>
+                  <button type="button" data-prompt="Create 5 MCQs from this topic">Create 5 MCQs from this topic <span aria-hidden="true">↗</span></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-composer-area">
+              <form class="chat-composer" id="chat-form">
+                <label class="visually-hidden" for="chat-input">Ask a question about your study material</label>
+                <textarea id="chat-input" rows="1" maxlength="500" placeholder="Ask a question about your study material..."></textarea>
+                <div class="composer-footer"><span>Enter to send · Shift + Enter for a new line</span><button class="send-message-button" id="send-message" type="submit" aria-label="Send message" title="Send message">↑</button></div>
+              </form>
+              <p class="study-material-label"><span aria-hidden="true">⌑</span> AI answers are based on your uploaded study material.</p>
+            </div>
+          </section>
+
+          <aside class="chat-side-panel">
+            <section class="chat-source-card"><p class="chat-side-kicker">CURRENT MATERIAL</p><div class="source-document-icon">PDF</div><h2 id="side-material-name">Cell Biology: Cell Structure</h2><p class="source-detail">Study guide · Biology</p><div class="source-ready"><i></i> Ready to reference</div><a href="upload.html">Manage your notes <span aria-hidden="true">→</span></a></section>
+            <section class="chat-tip-card"><span class="chat-tip-icon" aria-hidden="true">✦</span><p class="chat-side-kicker">STUDY TIP</p><h2>Ask a focused question.</h2><p>Try naming the topic or asking for one example at a time to keep your review clear.</p></section>
+            <p class="chat-demo-note">Answers use your generated study guide. Your signed-in session is required.</p>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

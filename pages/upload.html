@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f4">
+  <title>My Notes | AI Study Buddy</title>
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="../js/upload.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="../index.html" aria-label="AI Study Buddy home"><span class="brand-mark">s.</span><span>study buddy</span></a>
+      <p class="sidebar-label">YOUR SPACE</p>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-link" href="../index.html"><span class="nav-icon">⌂</span> Home</a>
+        <a class="nav-link" href="dashboard.html"><span class="nav-icon">▦</span> Dashboard</a>
+        <a class="nav-link active" href="upload.html" aria-current="page"><span class="nav-icon">＋</span> My notes</a>
+        <a class="nav-link" href="quiz.html"><span class="nav-icon">☷</span> Quiz</a>
+        <a class="nav-link" href="flashcards.html"><span class="nav-icon">▤</span> Flashcards</a>
+      </nav>
+      <div class="sidebar-note"><span class="note-spark">✳</span><strong>Small steps count.</strong><p>A little focused study today goes a long way.</p></div>
+      <div class="sidebar-bottom"><span class="avatar">S</span><span><strong>Study space</strong><small>Your personal desk</small></span></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><span class="eyebrow">YOUR STUDY SPACE</span><a class="topbar-link" href="dashboard.html">View progress <span aria-hidden="true">↗</span></a></header>
+      <section class="page-header upload-page-header"><p class="eyebrow accent-text">YOUR STUDY MATERIALS</p><h1>Bring your notes to life.</h1><p>Upload a PDF for secure text extraction and an AI-generated study guide. The backend processes the file temporarily and does not save it.</p></section>
+      <section class="content-section upload-content-section">
+        <div class="upload-layout">
+          <div class="upload-main-column">
+            <section class="upload-panel" aria-labelledby="upload-panel-heading">
+              <div class="upload-panel-heading"><div><p class="upload-panel-kicker">ADD A STUDY DOCUMENT</p><h2 id="upload-panel-heading">Upload your PDF</h2></div><span class="pdf-type-badge">PDF ONLY</span></div>
+              <div class="pdf-dropzone" id="pdf-dropzone" role="region" tabindex="0" aria-label="PDF upload drop area. Drop a file here or choose a PDF.">
+                <input class="file-input" id="note-file" type="file" accept="application/pdf,.pdf" aria-label="Choose a PDF file">
+                <span class="dropzone-icon" aria-hidden="true"><span>↑</span></span>
+                <h3>Drop your PDF here</h3>
+                <p>or choose a file from your device</p>
+                <label class="upload-pdf-button" for="note-file">Upload PDF</label>
+                <small>PDF files only · Maximum file size 20 MB</small>
+              </div>
+              <p class="upload-feedback" id="upload-status" role="status" aria-live="polite"></p>
+
+              <section class="selected-file-card" id="selected-file-card" aria-label="Selected file" hidden>
+                <span class="selected-file-icon" aria-hidden="true">PDF</span>
+                <span class="selected-file-info"><strong id="selected-file-name"></strong><small id="selected-file-size"></small></span>
+                <span class="ready-status" id="file-ready-status"><i></i> Ready to analyze</span>
+                <button class="remove-upload" id="remove-selected-file" type="button" aria-label="Remove selected PDF" title="Remove selected file">×</button>
+              </section>
+
+              <section class="analysis-progress" id="analysis-progress" aria-live="polite" hidden>
+                <div class="analysis-progress-heading"><span id="analysis-step">Preparing your document...</span><strong id="analysis-percent">0%</strong></div>
+                <div class="analysis-progress-track"><span id="analysis-progress-bar"></span></div>
+                <p>PDF text is being extracted and sent for AI analysis.</p>
+              </section>
+
+              <button class="analyze-button" id="analyze-button" type="button" disabled>Analyze material <span aria-hidden="true">→</span></button>
+            </section>
+
+            <section class="analysis-result" id="analysis-result" aria-live="polite" hidden>
+              <div class="result-success-icon" aria-hidden="true">✓</div>
+              <div class="result-content"><p class="upload-panel-kicker">ANALYSIS COMPLETE</p><h2>Your study material has been analyzed successfully.</h2><p>Your study guide is ready. Choose what you’d like to work on next.</p>
+                <div class="result-actions">
+                  <button class="result-action-button summary-action" type="button" data-result-action="summary"><span aria-hidden="true">≡</span> Generate Summary</button>
+                  <a class="result-action-button quiz-action" href="quiz.html"><span aria-hidden="true">✓</span> Generate Quiz</a>
+                  <a class="result-action-button flashcards-action" href="flashcards.html"><span aria-hidden="true">▤</span> Generate Flashcards</a>
+                  <a class="result-action-button questions-action" href="ask-ai.html"><span aria-hidden="true">?</span> Ask Questions</a>
+                </div>
+                <p class="result-action-feedback" id="result-action-feedback" role="status" aria-live="polite"></p>
+              </div>
+            </section>
+          </div>
+
+          <aside class="upload-side-column">
+            <section class="upload-guide-card"><span class="guide-spark" aria-hidden="true">✳</span><p class="upload-panel-kicker">A GOOD PLACE TO START</p><h2>One document.<br>A clearer plan.</h2><p>Add a class reading, study guide, or lecture notes to organize your review time.</p><a href="dashboard.html">Back to your dashboard <span aria-hidden="true">→</span></a></section>
+            <section class="upload-saved-panel"><div class="saved-panel-heading"><div><p class="upload-panel-kicker">YOUR LIBRARY</p><h2>Saved notes</h2></div><span class="saved-notes-count" id="notes-count">0</span></div><div class="notes-list" id="notes-list" aria-live="polite"></div></section>
+            <p class="upload-privacy-note"><span aria-hidden="true">⌑</span> Your PDF is sent to the Study Buddy backend for text extraction and is not saved there. Its title and generated study guide can be saved to your Firebase account.</p>
+          </aside>
+        </div>
+      </section>
+      <footer class="page-footer"><span>Made for curious minds.</span><span>Keep showing up, one page at a time.</span></footer>
+    </main>
+  </div>
+</body>
+</html>

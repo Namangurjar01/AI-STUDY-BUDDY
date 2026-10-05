@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f4">
+  <title>Flashcards | AI Study Buddy</title>
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="../js/flashcards.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="../index.html" aria-label="AI Study Buddy home"><span class="brand-mark">s.</span><span>study buddy</span></a>
+      <p class="sidebar-label">YOUR SPACE</p>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-link" href="../index.html"><span class="nav-icon">⌂</span> Home</a>
+        <a class="nav-link" href="dashboard.html"><span class="nav-icon">▦</span> Dashboard</a>
+        <a class="nav-link" href="upload.html"><span class="nav-icon">＋</span> My notes</a>
+        <a class="nav-link" href="quiz.html"><span class="nav-icon">☷</span> Quiz</a>
+        <a class="nav-link active" href="flashcards.html" aria-current="page"><span class="nav-icon">▤</span> Flashcards</a>
+      </nav>
+      <div class="sidebar-note"><span class="note-spark">✳</span><strong>Small steps count.</strong><p>A little focused study today goes a long way.</p></div>
+      <div class="sidebar-bottom"><span class="avatar">S</span><span><strong>Study space</strong><small>Your personal desk</small></span></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><span class="eyebrow">YOUR STUDY SPACE</span><a class="topbar-link" href="dashboard.html">View progress <span aria-hidden="true">↗</span></a></header>
+      <section class="page-header flashcards-page-header"><p class="eyebrow accent-text">ONE IDEA AT A TIME</p><h1>Flashcards</h1><p>Build recall with a focused set on data structures and algorithms.</p></section>
+      <section class="content-section flashcards-content">
+        <div class="flashcards-toolbar"><div class="flashcards-topic"><span class="flashcards-topic-icon" aria-hidden="true">▤</span><span><strong id="flashcards-topic-title">Data Structures &amp; Algorithms</strong><small id="flashcards-topic-count">Core computer science · 10 cards</small></span></div><div class="flashcards-toolbar-actions"><button class="shuffle-cards-button" id="generate-ai-flashcards" type="button">Generate from my notes <span aria-hidden="true">✳</span></button><button class="shuffle-cards-button" id="shuffle-cards" type="button"><span aria-hidden="true">⤨</span> Shuffle</button></div></div>
+        <p class="flashcards-ai-status" id="flashcards-ai-status" role="status" aria-live="polite"></p>
+
+        <div class="flashcards-layout">
+          <section class="flashcards-study-area" aria-label="Flashcard study area">
+            <div class="flashcards-progress-heading"><span id="flashcard-progress-label">CARD 1 OF 10</span><span id="flashcard-progress-value">0% reviewed</span></div>
+            <div class="flashcards-progress-track" role="progressbar" aria-label="Flashcard deck progress" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><span id="flashcards-progress-bar"></span></div>
+
+            <button class="study-flashcard" id="study-flashcard" type="button" aria-pressed="false" aria-label="Show answer">
+              <span class="study-flashcard-inner" id="flashcard-inner">
+                <span class="study-card-face study-card-front">
+                  <span class="study-card-topline"><span class="study-card-topic">DATA STRUCTURES &amp; ALGORITHMS</span><span class="study-card-side">QUESTION</span></span>
+                  <span class="study-card-content"><span class="study-card-overline">THINK IT THROUGH</span><strong id="flashcard-question"></strong></span>
+                  <span class="study-card-bottom"><span>Click or press Enter to reveal answer</span><span aria-hidden="true">↻</span></span>
+                </span>
+                <span class="study-card-face study-card-back">
+                  <span class="study-card-topline"><span class="study-card-topic">DATA STRUCTURES &amp; ALGORITHMS</span><span class="study-card-side">ANSWER</span></span>
+                  <span class="study-card-content"><span class="study-card-overline">THE KEY IDEA</span><strong id="flashcard-answer"></strong></span>
+                  <span class="study-card-bottom"><span>Click or press Enter to see question</span><span aria-hidden="true">↻</span></span>
+                </span>
+              </span>
+            </button>
+
+            <div class="flashcard-navigation">
+              <button class="flashcard-nav-button" id="previous-card" type="button" aria-label="Previous flashcard"><span aria-hidden="true">←</span> Previous</button>
+              <span class="flashcard-number" id="card-count" aria-live="polite">1 / 10</span>
+              <button class="flashcard-nav-button" id="next-card" type="button" aria-label="Next flashcard">Next <span aria-hidden="true">→</span></button>
+            </div>
+
+            <div class="flashcard-rating-actions" aria-label="Rate this flashcard">
+              <button class="rating-button need-revision-button" id="mark-need-revision" type="button"><span aria-hidden="true">↺</span> Mark as Need Revision</button>
+              <button class="rating-button known-button" id="mark-known" type="button"><span aria-hidden="true">✓</span> Mark as Known</button>
+            </div>
+            <p class="flashcard-rating-feedback" id="flashcard-rating-feedback" aria-live="polite"></p>
+          </section>
+
+          <aside class="flashcards-progress-panel">
+            <p class="flashcards-panel-kicker">YOUR REVIEW PROGRESS</p><h2>Keep your momentum.</h2><p class="flashcards-panel-description">Rate each card as you go. Your progress stays saved in this browser.</p>
+            <div class="flashcard-review-count known-count"><span class="review-count-icon" aria-hidden="true">✓</span><span><strong>Known</strong><small>Ready to recall</small></span><strong class="review-count-value" id="known-count">0</strong></div>
+            <div class="flashcard-review-count revision-count"><span class="review-count-icon" aria-hidden="true">↺</span><span><strong>Need Revision</strong><small>Give these another look</small></span><strong class="review-count-value" id="revision-count">0</strong></div>
+            <div class="review-completion"><div><span>Deck rated</span><strong id="rated-count">0 / 10</strong></div><div class="review-completion-track"><span id="rated-progress-bar"></span></div></div>
+            <button class="reset-card-ratings" id="reset-card-ratings" type="button">Reset ratings</button>
+          </aside>
+        </div>
+        <p class="flashcards-demo-note">Start with the sample computer science deck or generate a new deck from your analyzed study guide.</p>
+      </section>
+      <footer class="page-footer"><span>Made for curious minds.</span><span>Keep showing up, one page at a time.</span></footer>
+    </main>
+  </div>
+</body>
+</html>
