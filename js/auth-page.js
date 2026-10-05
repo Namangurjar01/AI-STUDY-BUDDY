@@ -78,8 +78,10 @@ function readableAuthError(error) {
     'auth/network-request-failed': 'Could not connect to Firebase. Check your internet connection and try again.',
     'auth/operation-not-allowed': 'Email/Password sign-in is not enabled in your Firebase project yet.',
     'auth/invalid-api-key': 'The Firebase config looks invalid. Check js/firebase-config.js.',
+    'auth/unauthorized-domain': 'This site is not allowed to sign in to Firebase. Add localhost under Authentication → Settings → Authorized domains, then refresh.',
+    'auth/configuration-not-found': 'Firebase Authentication is not configured for this project. Enable Email/Password under Authentication → Sign-in method.',
   };
-  return messages[error.code] || 'Something went wrong. Check your Firebase setup and try again.';
+  return messages[error.code] || `Firebase sign-in failed${error.code ? ` (${error.code})` : ''}. Check the provider, authorized domain, and Firebase web config.`;
 }
 
 loginTab.addEventListener('click', () => updateMode('login'));

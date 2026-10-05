@@ -7,6 +7,7 @@
   <title>Study Progress | AI Study Buddy</title>
   <link rel="stylesheet" href="../style.css">
   <script type="module" src="../js/progress.js"></script>
+  <script type="module" src="../js/dashboard-auth.js"></script>
 </head>
 <body class="student-dashboard">
   <div class="dashboard-shell">
@@ -33,34 +34,34 @@
 
       <div class="dashboard-content progress-content">
         <section class="progress-hero" aria-labelledby="progress-hero-heading">
-          <div class="progress-hero-copy"><span class="progress-hero-kicker"><i></i> YOUR STUDY MOMENTUM</span><h2 id="progress-hero-heading">Good work compounds.<br><em>Look how far you’ve come.</em></h2><p>You’ve completed 12 of your 18 monthly study topics. Keep a steady rhythm and your next milestone is within reach.</p><div class="progress-hero-meta"><span><strong>+12%</strong> progress this week</span><span class="hero-meta-divider"></span><span id="progress-updated">Updated today</span></div></div>
-          <div class="overall-progress-ring" id="overall-progress-ring" role="progressbar" aria-label="Overall study progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72"><div class="overall-progress-center"><span>OVERALL</span><strong id="overall-progress-value">72%</strong><small>study progress</small></div></div>
+          <div class="progress-hero-copy"><span class="progress-hero-kicker"><i></i> YOUR STUDY MOMENTUM</span><h2 id="progress-hero-heading">Small steps add up.<br><em>Keep your learning moving.</em></h2><p>Complete a quiz or review flashcards and your study activity will appear here.</p><div class="progress-hero-meta"><span>Based on your quiz scores</span><span class="hero-meta-divider"></span><span id="progress-date">YOUR LEARNING JOURNEY</span></div></div>
+          <div class="overall-progress-ring" id="overall-progress-ring" role="progressbar" aria-label="Average quiz score" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="overall-progress-center"><span>AVERAGE</span><strong id="overall-progress-value">—</strong><small>quiz score</small></div></div>
           <span class="hero-decoration hero-decoration-one" aria-hidden="true"></span><span class="hero-decoration hero-decoration-two" aria-hidden="true"></span>
         </section>
 
         <section class="progress-metrics" aria-label="Study statistics">
-          <article class="progress-metric metric-score"><div class="progress-metric-top"><span class="metric-symbol">◒</span><span class="metric-caption">AVERAGE</span></div><span class="progress-metric-label">Quiz average score</span><strong id="quiz-average">84%</strong><div class="metric-mini-track"><span id="quiz-average-bar"></span></div></article>
-          <article class="progress-metric metric-quizzes"><div class="progress-metric-top"><span class="metric-symbol">✓</span><span class="metric-caption">ALL TIME</span></div><span class="progress-metric-label">Quizzes completed</span><strong id="quizzes-completed">18</strong><small id="quiz-count-note">Practice makes progress</small></article>
-          <article class="progress-metric metric-flashcards"><div class="progress-metric-top"><span class="metric-symbol">▤</span><span class="metric-caption">ALL TIME</span></div><span class="progress-metric-label">Flashcards reviewed</span><strong id="flashcards-reviewed">42</strong><small>Cards flipped for recall</small></article>
-          <article class="progress-metric metric-topics"><div class="progress-metric-top"><span class="metric-symbol">✳</span><span class="metric-caption">THIS MONTH</span></div><span class="progress-metric-label">Topics completed</span><strong><span id="topics-completed">12</span><span class="metric-denominator"> / 18</span></strong><small>6 topics to monthly goal</small></article>
-          <article class="progress-metric metric-streak"><div class="progress-metric-top"><span class="metric-symbol">✦</span><span class="metric-caption">PERSONAL BEST · 12</span></div><span class="progress-metric-label">Current study streak</span><strong>7 <span class="metric-days">days</span></strong><div class="streak-week" aria-label="Six completed days and today"><i class="complete">M</i><i class="complete">T</i><i class="complete">W</i><i class="complete">T</i><i class="complete">F</i><i class="complete">S</i><i class="current">S</i></div></article>
+          <article class="progress-metric metric-score"><div class="progress-metric-top"><span class="metric-symbol">◒</span><span class="metric-caption">AVERAGE</span></div><span class="progress-metric-label">Quiz average score</span><strong id="quiz-average">—</strong><div class="metric-mini-track"><span id="quiz-average-bar"></span></div></article>
+          <article class="progress-metric metric-quizzes"><div class="progress-metric-top"><span class="metric-symbol">✓</span><span class="metric-caption">ALL TIME</span></div><span class="progress-metric-label">Quizzes completed</span><strong id="quizzes-completed">0</strong><small id="quiz-count-note">Complete a quiz to begin</small></article>
+          <article class="progress-metric metric-flashcards"><div class="progress-metric-top"><span class="metric-symbol">▤</span><span class="metric-caption">ALL TIME</span></div><span class="progress-metric-label">Flashcards reviewed</span><strong id="flashcards-reviewed">0</strong><small>Cards flipped for recall</small></article>
+          <article class="progress-metric metric-topics"><div class="progress-metric-top"><span class="metric-symbol">✳</span><span class="metric-caption">LATEST GUIDE</span></div><span class="progress-metric-label">Topics in your guide</span><strong id="topics-completed">0</strong><small id="topics-note">Analyze a PDF to find topics</small></article>
+          <article class="progress-metric metric-streak"><div class="progress-metric-top"><span class="metric-symbol">✦</span><span class="metric-caption">CURRENT</span></div><span class="progress-metric-label">Study streak</span><strong><span id="study-streak">0</span> <span class="metric-days">days</span></strong><div class="streak-week" id="streak-week" aria-label="Study activity this week"></div></article>
         </section>
 
         <div class="progress-chart-grid">
           <section class="progress-chart-panel weekly-chart-panel" aria-labelledby="weekly-chart-title">
-            <div class="progress-chart-heading"><div><p class="progress-chart-kicker">YOUR ROUTINE</p><h2 id="weekly-chart-title">Weekly study activity</h2><p>Minutes spent in focused study sessions</p></div><span class="chart-period">THIS WEEK <span aria-hidden="true">⌄</span></span></div>
-            <div class="weekly-chart-legend"><span><i></i> Focus time</span><strong id="weekly-total">4h 18m</strong></div>
+            <div class="progress-chart-heading"><div><p class="progress-chart-kicker">YOUR ROUTINE</p><h2 id="weekly-chart-title">Weekly study activity</h2><p>Quiz completions and flashcard reviews</p></div><span class="chart-period">THIS WEEK</span></div>
+            <div class="weekly-chart-legend"><span><i></i> Study activities</span><strong id="weekly-total">0 activities</strong></div>
             <div class="weekly-bar-chart" id="weekly-bar-chart" role="img" aria-label="Weekly study activity chart"></div>
           </section>
 
           <section class="progress-chart-panel quiz-chart-panel" aria-labelledby="quiz-chart-title">
-            <div class="progress-chart-heading"><div><p class="progress-chart-kicker">KNOWLEDGE CHECK</p><h2 id="quiz-chart-title">Quiz performance</h2><p>Recent scores out of 100%</p></div><span class="chart-trend-badge">↗ <span id="quiz-trend">+8%</span></span></div>
+            <div class="progress-chart-heading"><div><p class="progress-chart-kicker">KNOWLEDGE CHECK</p><h2 id="quiz-chart-title">Quiz performance</h2><p>Recent scores out of 100%</p></div><span class="chart-trend-badge"><span id="quiz-trend">—</span></span></div>
             <div class="quiz-performance-chart" id="quiz-performance-chart" role="img" aria-label="Recent quiz scores"></div>
             <div class="chart-axis-labels"><span>0%</span><span>50%</span><span>100%</span></div>
           </section>
 
           <section class="progress-chart-panel topics-chart-panel" aria-labelledby="topics-chart-title">
-            <div class="progress-chart-heading"><div><p class="progress-chart-kicker">YOUR LEARNING MAP</p><h2 id="topics-chart-title">Topic completion</h2><p>Course topics you’ve been working through</p></div><span class="topic-completion-total"><strong id="topic-completion-total">12</strong><small>of 18 done</small></span></div>
+            <div class="progress-chart-heading"><div><p class="progress-chart-kicker">YOUR LEARNING MAP</p><h2 id="topics-chart-title">Topics in your guide</h2><p>Topics extracted from your latest study PDF</p></div><span class="topic-completion-total"><strong id="topic-completion-total">0</strong><small>topics found</small></span></div>
             <div class="topic-list" id="topic-list"></div>
           </section>
 
@@ -69,7 +70,7 @@
           </aside>
         </div>
 
-        <p class="progress-demo-note">Demo data is shown where personal history is not available. Completed quizzes and flashcard reviews are saved in this browser only.</p>
+        <p class="progress-demo-note">Your activity is saved to your account when cloud sync is configured, and kept in this browser as a local backup.</p>
       </div>
     </main>
   </div>

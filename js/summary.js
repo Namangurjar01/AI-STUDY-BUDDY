@@ -10,9 +10,9 @@ const aiGuide = readStudyGuide();
 
 function getSelectedSource() {
   try {
-    return localStorage.getItem('studyBuddySummarySource') || 'Cell Biology — Cell Structure.pdf';
+    return localStorage.getItem('studyBuddySummarySource') || aiGuide?.fileName || '';
   } catch {
-    return 'Cell Biology — Cell Structure.pdf';
+    return aiGuide?.fileName || '';
   }
 }
 
@@ -28,8 +28,8 @@ function titleFromFileName(fileName) {
 }
 
 const fileName = getSelectedSource();
-sourceName.textContent = fileName;
-summaryTitle.textContent = aiGuide?.title || titleFromFileName(fileName);
+sourceName.textContent = fileName || 'No material selected';
+summaryTitle.textContent = aiGuide?.title || (fileName ? titleFromFileName(fileName) : 'Your study guide');
 
 function appendTextRow(container, className, title, body, index) {
   const row = document.createElement('article');
@@ -52,7 +52,7 @@ function renderGeneratedGuide(guide) {
 
   document.querySelector('.summary-prose').textContent = guide.summary;
   sourceName.textContent = guide.fileName || fileName;
-  if (guide.pageCount) document.querySelector('.summary-source-divider + span').textContent = `${guide.pageCount} pages`;
+  if (guide.pageCount) document.querySelector('#summary-page-count').textContent = `${guide.pageCount} pages`;
 
   const bannerText = document.querySelector('.summary-demo-banner small');
   bannerText.textContent = 'Generated from the text extracted from your PDF.';
@@ -110,20 +110,25 @@ function renderGeneratedGuide(guide) {
   }
 }
 
-renderGeneratedGuide(aiGuide);
-
-window.setTimeout(() => {
+if (aiGuide && typeof aiGuide.summary === 'string' && aiGuide.summary.trim()) {
+  renderGeneratedGuide(aiGuide);
+  window.setTimeout(() => {
+    loadingPanel.hidden = true;
+    summaryContent.hidden = false;
+    downloadButton.disabled = false;
+  }, 250);
+} else {
   loadingPanel.hidden = true;
-  summaryContent.hidden = false;
-  downloadButton.disabled = false;
-}, 1400);
+  document.querySelector('#summary-empty').hidden = false;
+  document.querySelector('#summary-source-notice').hidden = true;
+}
 
 downloadButton.addEventListener('click', () => {
   const sections = [...summaryContent.querySelectorAll('.summary-section')];
   const lines = [
     `AI Study Buddy Summary: ${summaryTitle.textContent}`,
     `Source: ${fileName}`,
-    aiGuide ? 'Generated from your uploaded study material.' : 'Demo educational content.',
+    'Generated from your uploaded study material.',
     '',
     ...sections.flatMap((section) => [section.innerText.trim(), '']),
   ];
